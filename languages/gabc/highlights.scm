@@ -20,9 +20,8 @@
 (header_tex_mode_differentia name: _ @attribute)
 
 ; Header values
-; NOTE: header_generic value is an anonymous regex node (/[^;%]*/) — not accessible
-; via tree-sitter field queries. The plain-text value (e.g. "Kyrie XVI") remains
-; unhighlighted; this is a grammar-level limitation, not a query error.
+; Generic header value (now a named node after grammar improvement)
+(header_value) @string
 
 ; Numeric header value (named node already highlighted elsewhere)
 (header_value_numeric) @number
