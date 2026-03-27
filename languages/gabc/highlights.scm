@@ -239,6 +239,9 @@
 (gv) @keyword.directive
 (ev) @keyword.directive
 
+; Macros ([nm0], [gm0], [em0], [altm0])
+(gabc_macro) @function.macro
+
 ; ============================================================================
 ; SYLLABLE TEXT & STYLING
 ; ============================================================================
