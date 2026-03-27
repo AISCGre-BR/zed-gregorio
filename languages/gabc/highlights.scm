@@ -7,9 +7,6 @@
 ; HEADERS
 ; ============================================================================
 
-; Separator : between header name and value
-":" @punctuation.delimiter
-
 ; Header names
 ; header_generic uses a proper named node (header_name)
 (header_name) @attribute
@@ -284,14 +281,30 @@
 ((syllable_text) @keyword
   (#match? @keyword "^\\*+$"))
 
-; Style tags - captura do nó completo (compatível com todas versões do tree-sitter)
-; O nó inclui as tags <b>/<i>/etc. + conteúdo; o realce cobre toda a região
-(syllable_style_bold) @markup.bold
-(syllable_style_italic) @markup.italic
-(syllable_style_underline) @markup.underline
-(syllable_style_small_caps) @markup.heading
-(syllable_style_teletype) @markup.raw
-(syllable_style_colored) @string.special
+; Style tags - highlight text content within tags (not the tags themselves)
+(syllable_style_bold
+  (syllable
+    (syllable_text) @markup.bold))
+
+(syllable_style_italic
+  (syllable
+    (syllable_text) @markup.italic))
+
+(syllable_style_underline
+  (syllable
+    (syllable_text) @markup.underline))
+
+(syllable_style_small_caps
+  (syllable
+    (syllable_text) @markup.heading))
+
+(syllable_style_teletype
+  (syllable
+    (syllable_text) @markup.raw))
+
+(syllable_style_colored
+  (syllable
+    (syllable_text) @string.special))
 
 ; Style tags - cross-syllable (open/close)
 ; Bold
