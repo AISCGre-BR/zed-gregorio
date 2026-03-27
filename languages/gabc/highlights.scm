@@ -472,6 +472,11 @@
 (saltate) @keyword
 (ut_supra) @keyword
 
+; Structural wrappers for significant/tironian letters
+(significant_letter) @keyword
+(tironian_letter) @keyword
+(position_number) @number
+
 ; ============================================================================
 ; COMMENTS
 ; ============================================================================
