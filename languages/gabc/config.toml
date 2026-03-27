@@ -1,0 +1,12 @@
+name = "GABC"
+grammar = "gregorio"
+path_suffixes = ["gabc"]
+line_comments = ["% "]
+tab_size = 2
+
+brackets = [
+  { start = "(", end = ")", close = true, newline = false, not_in = ["string"] },
+  { start = "[", end = "]", close = true, newline = false, not_in = ["string"] },
+  { start = "{", end = "}", close = true, newline = true, not_in = ["string"] },
+  { start = "<", end = ">", close = true, newline = false, not_in = ["string"] },
+]
