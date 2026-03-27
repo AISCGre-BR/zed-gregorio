@@ -7,10 +7,44 @@
 ; HEADERS
 ; ============================================================================
 
+; Separator : between header name and value
+":" @punctuation.delimiter
+
+; Header names
+; header_generic uses a proper named node (header_name)
 (header_name) @attribute
 
-; Numeric header values
+; Numeric and TeX headers use anonymous literal tokens as names → use _
+(header_numeric_mode        name: _ @attribute)
+(header_numeric_nabc_lines  name: _ @attribute)
+(header_numeric_staff_lines name: _ @attribute)
+(header_tex_annotation      name: _ @attribute)
+(header_tex_mode_modifier   name: _ @attribute)
+(header_tex_mode_differentia name: _ @attribute)
+
+; Header values
+; NOTE: header_generic value is an anonymous regex node (/[^;%]*/) — not accessible
+; via tree-sitter field queries. The plain-text value (e.g. "Kyrie XVI") remains
+; unhighlighted; this is a grammar-level limitation, not a query error.
+
+; Numeric header value (named node already highlighted elsewhere)
 (header_value_numeric) @number
+
+; TeX header values (injected LaTeX code)
+(header_tex_annotation       value: (tex_code_header) @string)
+(header_tex_mode_modifier    value: (tex_code_header) @string)
+(header_tex_mode_differentia value: (tex_code_header) @string)
+(header_tex_def_macro        value: (tex_code_header) @string)
+
+; Header terminators (; and ;;)
+(header_generic              terminator: _ @punctuation.delimiter)
+(header_numeric_mode         terminator: _ @punctuation.delimiter)
+(header_numeric_nabc_lines   terminator: _ @punctuation.delimiter)
+(header_numeric_staff_lines  terminator: _ @punctuation.delimiter)
+(header_tex_annotation       terminator: _ @punctuation.delimiter)
+(header_tex_mode_modifier    terminator: _ @punctuation.delimiter)
+(header_tex_mode_differentia terminator: _ @punctuation.delimiter)
+(header_tex_def_macro        terminator: _ @punctuation.delimiter)
 
 (section_separator) @punctuation.special
 
@@ -38,6 +72,7 @@
 (divisio_minimis) @punctuation.special
 (divisio_minimis_upper_ledger_line) @punctuation.special
 (divisio_minima) @punctuation.special
+(divisio_minima_upper_ledger_line) @punctuation.special
 (divisio_minor) @punctuation.special
 (divisio_maior) @punctuation.special
 (divisio_maior_dotted) @punctuation.special
@@ -217,30 +252,19 @@
 (syllable_other_above_lines_text) @string.special
 (syllable_other_special_character) @string.escape
 
-; Style tags - highlight text within complete tags
-(syllable_style_bold
-  (syllable
-    (syllable_text) @emphasis.strong))
+; Asterisk markers (* = half-asterisk/division, ** = second asterisk)
+; These are parsed as syllable_text but have structural meaning
+((syllable_text) @keyword
+  (#match? @keyword "^\\*+$"))
 
-(syllable_style_italic
-  (syllable
-    (syllable_text) @emphasis))
-
-(syllable_style_underline
-  (syllable
-    (syllable_text) @title))
-
-(syllable_style_small_caps
-  (syllable
-    (syllable_text) @title))
-
-(syllable_style_teletype
-  (syllable
-    (syllable_text) @text.literal))
-
-(syllable_style_colored
-  (syllable
-    (syllable_text) @string.special))
+; Style tags - captura do nó completo (compatível com todas versões do tree-sitter)
+; O nó inclui as tags <b>/<i>/etc. + conteúdo; o realce cobre toda a região
+(syllable_style_bold) @emphasis.strong
+(syllable_style_italic) @emphasis
+(syllable_style_underline) @title
+(syllable_style_small_caps) @title
+(syllable_style_teletype) @text.literal
+(syllable_style_colored) @string.special
 
 ; Style tags - cross-syllable (open/close)
 ; Bold
