@@ -435,6 +435,27 @@
 (parvum) @keyword
 (paratim) @keyword
 (perfecte) @keyword
+(parvum_mediocriter) @keyword
+(pulcre) @keyword
+(sursum) @keyword
+(sursum_bene) @keyword
+(sursum_celeriter) @keyword
+(similiter) @keyword
+(simpliciter) @keyword
+(simpliciter_simpl) @keyword
+(simul) @keyword
+(sursum_mediocriter) @keyword
+(sursum_parum) @keyword
+(sursum_tenere) @keyword
+(statim) @keyword
+(tenere) @keyword
+(tenere_bene) @keyword
+(tenere_humiliter) @keyword
+(tenere_mediocriter) @keyword
+(tenere_wide) @keyword
+(valde) @keyword
+(volubiliter) @keyword
+(expectare) @keyword
 
 ; ============================================================================
 ; COMMENTS
