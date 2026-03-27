@@ -58,6 +58,7 @@
 (c_clef) @keyword.directive
 (f_clef) @keyword.directive
 (c_clef_flat) @keyword.directive
+(f_clef_flat) @keyword.directive
 
 ; ============================================================================
 ; GABC NOTATION - SEPARATION BARS
