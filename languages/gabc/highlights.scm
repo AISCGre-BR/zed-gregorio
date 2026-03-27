@@ -350,6 +350,8 @@
 (nihil) @constant
 (uncinus) @constant
 (oriscus_clivis) @constant
+(quilisma_3_loops) @constant
+(quilisma_2_loops) @constant
 
 ; ============================================================================
 ; NABC - MODIFIERS
