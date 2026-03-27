@@ -1,0 +1,12 @@
+[package]
+name = "zed-gregorio"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Zed extension for Gregorio GABC/NABC Gregorian chant notation"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+zed_extension_api = "0.1.0"
