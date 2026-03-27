@@ -252,6 +252,24 @@
 (syllable_other_above_lines_text) @string.special
 (syllable_other_special_character) @string.escape
 
+; Syllable control tags
+(syllable_control_clear) @keyword.control
+(syllable_control_protrusion) @keyword.control
+
+; Elision (vowel suppression for centering)
+(syllable_control_elision) @keyword.control
+(syllable_control_elision_open) @keyword.control
+(syllable_control_elision_close) @keyword.control
+
+; EUOUAE (psalm tone differentia marking)
+(syllable_control_euouae) @keyword.control
+(syllable_control_euouae_open) @keyword.control
+(syllable_control_euouae_close) @keyword.control
+
+; No Line Break Area
+(syllable_control_no_line_break_open) @keyword.control
+(syllable_control_no_line_break_close) @keyword.control
+
 ; Asterisk markers (* = half-asterisk/division, ** = second asterisk)
 ; These are parsed as syllable_text but have structural meaning
 ((syllable_text) @keyword
