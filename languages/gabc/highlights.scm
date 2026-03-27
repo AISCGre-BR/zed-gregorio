@@ -270,6 +270,15 @@
 (syllable_control_no_line_break_open) @keyword.control
 (syllable_control_no_line_break_close) @keyword.control
 
+; Translation text below staff: [text]
+(syllable_translation) @string.special
+
+; Lyric centering markers: {text}
+(syllable_centering) @punctuation.special
+
+; Escape sequences: $x
+(syllable_escape_sequence) @string.escape
+
 ; Asterisk markers (* = half-asterisk/division, ** = second asterisk)
 ; These are parsed as syllable_text but have structural meaning
 ((syllable_text) @keyword
