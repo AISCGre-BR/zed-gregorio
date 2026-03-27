@@ -457,6 +457,21 @@
 (volubiliter) @keyword
 (expectare) @keyword
 
+; Tironian letters (Laon notation)
+(deorsum) @keyword
+(devertit) @keyword
+(devexum) @keyword
+(prode_sub_eam) @keyword
+(quam_mox) @keyword
+(sub) @keyword
+(seorsum) @keyword
+(subjice) @keyword
+(saltim) @keyword
+(sonare) @keyword
+(supra) @keyword
+(saltate) @keyword
+(ut_supra) @keyword
+
 ; ============================================================================
 ; COMMENTS
 ; ============================================================================
