@@ -59,9 +59,9 @@
 ; GABC NOTATION - CLEFS
 ; ============================================================================
 
-(c_clef) @keyword
-(f_clef) @keyword
-(c_clef_flat) @keyword
+(c_clef) @keyword.directive
+(f_clef) @keyword.directive
+(c_clef_flat) @keyword.directive
 
 ; ============================================================================
 ; GABC NOTATION - SEPARATION BARS
@@ -87,17 +87,17 @@
 ; GABC NOTATION - CUSTOS
 ; ============================================================================
 
-(custos_auto_pitch) @keyword
-(custos_symbol) @keyword
-(force_custos) @keyword
-(disable_custos) @keyword
+(custos_auto_pitch) @keyword.directive
+(custos_symbol) @keyword.directive
+(force_custos) @keyword.control
+(disable_custos) @keyword.control
 
 ; ============================================================================
 ; GABC NOTATION - LINE BREAKS
 ; ============================================================================
 
-(justified_line_break) @keyword
-(ragged_line_break) @keyword
+(justified_line_break) @keyword.control
+(ragged_line_break) @keyword.control
 
 ; ============================================================================
 ; GABC NOTATION - SPACING
@@ -203,45 +203,45 @@
 ; ============================================================================
 
 ; Shape & stroke
-(shape) @keyword
-(stroke) @keyword
+(shape) @keyword.directive
+(stroke) @keyword.directive
 
 ; Custos control
-(nocustos) @keyword
+(nocustos) @keyword.control
 
 ; Choral signs
-(cs) @keyword
-(cn) @keyword
+(cs) @keyword.directive
+(cn) @keyword.directive
 
 ; Braces
-(ob) @keyword
-(ub) @keyword
-(ocb) @keyword
-(ocba) @keyword
+(ob) @keyword.directive
+(ub) @keyword.directive
+(ocb) @keyword.directive
+(ocba) @keyword.directive
 
 ; Stem length
-(ll) @keyword
+(ll) @keyword.directive
 
 ; Ledger lines
-(oll) @keyword
-(ull) @keyword
+(oll) @keyword.directive
+(ull) @keyword.directive
 
 ; Slurs
-(oslur) @keyword
-(uslur) @keyword
+(oslur) @keyword.directive
+(uslur) @keyword.directive
 
 ; Horizontal episema
-(oh) @keyword
-(uh) @keyword
+(oh) @keyword.directive
+(uh) @keyword.directive
 (episema_position) @string
 
 ; Above lines text
-(alt) @keyword
+(alt) @keyword.directive
 
 ; Verbatim
-(nv) @keyword
-(gv) @keyword
-(ev) @keyword
+(nv) @keyword.directive
+(gv) @keyword.directive
+(ev) @keyword.directive
 
 ; ============================================================================
 ; SYLLABLE TEXT & STYLING
