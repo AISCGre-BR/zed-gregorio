@@ -8,5 +8,11 @@ description = "Zed extension for Gregorio GABC/NABC Gregorian chant notation"
 [lib]
 crate-type = ["cdylib"]
 
+[profile.dev]
+incremental = false
+
+[profile.release]
+incremental = false
+
 [dependencies]
 zed_extension_api = "0.1.0"
