@@ -272,9 +272,11 @@
 
 ; Translation text below staff: [text]
 (syllable_translation) @string.special
+(translation_content) @string.special
 
 ; Lyric centering markers: {text}
 (syllable_centering) @punctuation.special
+(centering_content) @punctuation.special
 
 ; Escape sequences: $x
 (syllable_escape_sequence) @string.escape
