@@ -1,0 +1,76 @@
+﻿
+<!doctype HTML>
+<head>
+  <title>Tree-sitter Highlighting</title>
+  <style>
+    body {
+      font-family: monospace
+    }
+    .line-number {
+      user-select: none;
+      text-align: right;
+      color: rgba(27,31,35,.3);
+      padding: 0 10px;
+    }
+    .line {
+      white-space: pre;
+    }
+  </style>
+  <style>
+    .attribute { font-style: italic;color: #af0000; }
+    .comment { font-style: italic;color: #8a8a8a; }
+    .constant { color: #875f00; }
+    .constant.builtin { font-weight: bold;color: #875f00; }
+    .constructor { color: #af8700; }
+    .function { color: #005fd7; }
+    .function.builtin { font-weight: bold;color: #005fd7; }
+    .keyword { color: #5f00d7; }
+    .module { color: #af8700; }
+    .number { font-weight: bold;color: #875f00; }
+    .operator { font-weight: bold;color: #4e4e4e; }
+    .property { color: #af0000; }
+    .property.builtin { font-weight: bold;color: #af0000; }
+    .punctuation { color: #4e4e4e; }
+    .punctuation.bracket { color: #4e4e4e; }
+    .punctuation.delimiter { color: #4e4e4e; }
+    .punctuation.special { color: #4e4e4e; }
+    .string { color: #008700; }
+    .string.special { color: #008787; }
+    .tag { color: #000087; }
+    .type { color: #005f5f; }
+    .type.builtin { font-weight: bold;color: #005f5f; }
+    .variable { color: #d0d0d0; }
+    .variable.builtin { font-weight: bold;color: #d0d0d0; }
+    .variable.parameter { text-decoration: underline;color: #d0d0d0; }
+  </style>
+
+</head>
+<body>
+
+<table>
+<tr><td class=line-number>1</td><td class=line><span style='font-style: italic;color: #af0000'>name</span><span style='color: #4e4e4e'>:</span> Kyrie XVI<span style='color: #4e4e4e'>;</span>
+</td></tr>
+<tr><td class=line-number>2</td><td class=line><span style='font-style: italic;color: #af0000'>office-part</span><span style='color: #4e4e4e'>:</span> Kyriale<span style='color: #4e4e4e'>;</span>
+</td></tr>
+<tr><td class=line-number>3</td><td class=line><span style='font-style: italic;color: #af0000'>mode</span><span style='color: #4e4e4e'>:</span><span style='font-weight: bold;color: #875f00'> 8</span><span style='color: #4e4e4e'>;</span>
+</td></tr>
+<tr><td class=line-number>4</td><td class=line><span style='font-style: italic;color: #af0000'>book</span><span style='color: #4e4e4e'>:</span> Graduale Romanum, 1961, p. 46*<span style='color: #4e4e4e'>;</span>
+</td></tr>
+<tr><td class=line-number>5</td><td class=line><span style='font-style: italic;color: #af0000'>transcriber</span><span style='color: #4e4e4e'>:</span> AISC Gre-BR<span style='color: #4e4e4e'>;</span>
+</td></tr>
+<tr><td class=line-number>6</td><td class=line><span style='color: #4e4e4e'>%%</span>
+</td></tr>
+<tr><td class=line-number>7</td><td class=line>(<span style='color: #5f00d7'>c4</span>) KY(<span style='font-weight: bold;color: #875f00'>f</span>)ri(<span style='font-weight: bold;color: #875f00'>g</span><span style='font-weight: bold;color: #875f00'>h</span>)e(<span style='font-weight: bold;color: #875f00'>h</span><span style='font-style: italic;color: #af0000'>.</span>) <span style='color: #5f00d7'>*</span>() e(<span style='font-weight: bold;color: #875f00'>i</span><span style='font-weight: bold;color: #4e4e4e'>x</span><span style='font-weight: bold;color: #875f00'>h</span><span style='font-style: italic;color: #af0000'>_</span><span style='font-weight: bold;color: #875f00'>i</span><span style='font-style: italic;color: #af0000'>_</span><span style='font-weight: bold;color: #875f00'>H</span><span style='font-style: italic;color: #af0000'>&#39;</span><span style='font-weight: bold;color: #875f00'>G</span><span style='font-weight: bold;color: #875f00'>h</span><span style='color: #005f5f'>v</span><span style='font-weight: bold;color: #875f00'>F</span><span style='font-style: italic;color: #af0000'>&#39;</span><span style='font-weight: bold;color: #875f00'>E</span>)l├®(<span style='font-weight: bold;color: #875f00'>f</span><span style='font-weight: bold;color: #875f00'>g</span><span style='font-weight: bold;color: #875f00'>f</span><span style='font-style: italic;color: #af0000'>&#39;</span>)i(<span style='font-weight: bold;color: #875f00'>f</span>)son.(<span style='font-weight: bold;color: #875f00'>f</span><span style='font-style: italic;color: #af0000'>.</span>) &lt;i&gt;bis&lt;/i&gt;(<span style='color: #4e4e4e'>::</span>)
+</td></tr>
+<tr><td class=line-number>8</td><td class=line>Chri(<span style='font-weight: bold;color: #875f00'>i</span><span style='font-weight: bold;color: #4e4e4e'>x</span><span style='font-weight: bold;color: #875f00'>f</span><span style='color: #4e4e4e'>!</span><span style='font-weight: bold;color: #875f00'>g</span><span style='color: #005f5f'>w</span><span style='font-weight: bold;color: #875f00'>h</span><span style='font-style: italic;color: #af0000'>_</span><span style='font-weight: bold;color: #875f00'>G</span><span style='font-weight: bold;color: #875f00'>F</span><span style='font-style: italic;color: #af0000'>&#39;</span><span style='font-weight: bold;color: #875f00'>g</span>)ste(<span style='font-weight: bold;color: #875f00'>f</span><span style='font-weight: bold;color: #875f00'>g</span><span style='font-weight: bold;color: #875f00'>f</span><span style='font-style: italic;color: #af0000'>.</span>) e(<span style='font-weight: bold;color: #875f00'>f</span>)l├®(<span style='font-weight: bold;color: #875f00'>g</span><span style='font-weight: bold;color: #875f00'>h</span>)i(<span style='font-weight: bold;color: #875f00'>h</span>)son.(<span style='font-weight: bold;color: #875f00'>h</span><span style='font-style: italic;color: #af0000'>.</span>) &lt;i&gt;bis&lt;/i&gt;(<span style='color: #4e4e4e'>::</span>)
+</td></tr>
+<tr><td class=line-number>9</td><td class=line>K├¢(<span style='font-weight: bold;color: #875f00'>f</span>)ri(<span style='font-weight: bold;color: #875f00'>g</span><span style='font-weight: bold;color: #875f00'>h</span>)e(<span style='font-weight: bold;color: #875f00'>i</span><span style='font-weight: bold;color: #4e4e4e'>x</span><span style='font-weight: bold;color: #875f00'>h</span><span style='font-weight: bold;color: #875f00'>i</span><span style='font-weight: bold;color: #875f00'>h</span><span style='font-style: italic;color: #af0000'>.</span>) <span style='color: #008700'>&lt;sp&gt;V/&lt;/sp&gt;</span>.(<span style='color: #4e4e4e'>::</span>) 
+</td></tr>
+<tr><td class=line-number>10</td><td class=line>e(<span style='font-weight: bold;color: #875f00'>i</span><span style='font-weight: bold;color: #4e4e4e'>x</span><span style='font-weight: bold;color: #875f00'>h</span><span style='font-style: italic;color: #af0000'>_</span><span style='font-weight: bold;color: #875f00'>i</span><span style='font-style: italic;color: #af0000'>_</span><span style='font-weight: bold;color: #875f00'>H</span><span style='font-style: italic;color: #af0000'>&#39;</span><span style='font-weight: bold;color: #875f00'>G</span><span style='font-weight: bold;color: #875f00'>h</span><span style='font-weight: bold;color: #875f00'>i</span><span style='font-weight: bold;color: #875f00'>h</span>)l├®(<span style='font-weight: bold;color: #875f00'>g</span><span style='font-weight: bold;color: #875f00'>f</span><span style='color: #005f5f'>~</span>)i(<span style='font-weight: bold;color: #875f00'>g</span><span style='font-weight: bold;color: #875f00'>h</span><span style='color: #4e4e4e'>/</span><span style='font-weight: bold;color: #875f00'>i</span><span style='font-weight: bold;color: #875f00'>h</span>)son.(<span style='font-weight: bold;color: #875f00'>h</span><span style='font-style: italic;color: #af0000'>.</span>) (<span style='color: #4e4e4e'>::</span>)
+</td></tr>
+<tr><td class=line-number>11</td><td class=line>K├¢(<span style='font-weight: bold;color: #875f00'>f</span>)ri(<span style='font-weight: bold;color: #875f00'>h</span>)e(<span style='font-weight: bold;color: #875f00'>i</span><span style='font-weight: bold;color: #4e4e4e'>x</span><span style='font-weight: bold;color: #875f00'>h</span><span style='font-weight: bold;color: #875f00'>h</span><span style='font-weight: bold;color: #875f00'>i</span>) <span style='color: #5f00d7'>**</span>(<span style='color: #4e4e4e'>,</span>) (<span style='font-weight: bold;color: #875f00'>h</span><span style='font-weight: bold;color: #875f00'>g</span><span style='color: #4e4e4e'>/</span><span style='font-weight: bold;color: #875f00'>h</span><span style='font-weight: bold;color: #875f00'>i</span><span style='font-weight: bold;color: #875f00'>h</span>) (<span style='color: #4e4e4e'>,</span>) e(<span style='font-weight: bold;color: #875f00'>f</span>)l├®(<span style='font-weight: bold;color: #875f00'>g</span><span style='font-weight: bold;color: #875f00'>h</span>)i(<span style='font-weight: bold;color: #875f00'>h</span>)son.(<span style='font-weight: bold;color: #875f00'>h</span><span style='font-style: italic;color: #af0000'>.</span>) (<span style='color: #4e4e4e'>::</span>)
+</td></tr>
+</table>
+
+</body>
+
