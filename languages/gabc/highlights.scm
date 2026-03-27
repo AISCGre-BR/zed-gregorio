@@ -286,57 +286,57 @@
 
 ; Style tags - captura do nó completo (compatível com todas versões do tree-sitter)
 ; O nó inclui as tags <b>/<i>/etc. + conteúdo; o realce cobre toda a região
-(syllable_style_bold) @emphasis.strong
-(syllable_style_italic) @emphasis
-(syllable_style_underline) @title
-(syllable_style_small_caps) @title
-(syllable_style_teletype) @text.literal
+(syllable_style_bold) @markup.bold
+(syllable_style_italic) @markup.italic
+(syllable_style_underline) @markup.underline
+(syllable_style_small_caps) @markup.heading
+(syllable_style_teletype) @markup.raw
 (syllable_style_colored) @string.special
 
 ; Style tags - cross-syllable (open/close)
 ; Bold
 (syllable
   (syllable_style_bold_open)
-  (syllable_text) @emphasis.strong)
+  (syllable_text) @markup.bold)
 
 (syllable
-  (syllable_text) @emphasis.strong
+  (syllable_text) @markup.bold
   (syllable_style_bold_close))
 
 ; Italic
 (syllable
   (syllable_style_italic_open)
-  (syllable_text) @emphasis)
+  (syllable_text) @markup.italic)
 
 (syllable
-  (syllable_text) @emphasis
+  (syllable_text) @markup.italic
   (syllable_style_italic_close))
 
 ; Underline
 (syllable
   (syllable_style_underline_open)
-  (syllable_text) @title)
+  (syllable_text) @markup.underline)
 
 (syllable
-  (syllable_text) @title
+  (syllable_text) @markup.underline
   (syllable_style_underline_close))
 
 ; Small Caps
 (syllable
   (syllable_style_small_caps_open)
-  (syllable_text) @title)
+  (syllable_text) @markup.heading)
 
 (syllable
-  (syllable_text) @title
+  (syllable_text) @markup.heading
   (syllable_style_small_caps_close))
 
 ; Teletype
 (syllable
   (syllable_style_teletype_open)
-  (syllable_text) @text.literal)
+  (syllable_text) @markup.raw)
 
 (syllable
-  (syllable_text) @text.literal
+  (syllable_text) @markup.raw
   (syllable_style_teletype_close))
 
 ; Colored
