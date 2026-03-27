@@ -8,7 +8,7 @@ repository = "https://github.com/AISCGre-BR/zed-gregorio"
 
 [grammars.gregorio]
 repository = "https://github.com/AISCGre-BR/tree-sitter-gregorio"
-rev = "d608a7c246fe4214940468859a613460c7f64bf0"
+rev = "51a73e7211d0775d990e2d9a88fb66542a27883b"
 
 [language_servers.gregorio-lsp]
 name = "Gregorio LSP"
