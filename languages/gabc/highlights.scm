@@ -7,10 +7,40 @@
 ; HEADERS
 ; ============================================================================
 
+; Header names
+; header_generic uses a proper named node (header_name)
 (header_name) @attribute
 
-; Numeric header values
+; Numeric and TeX headers use anonymous literal tokens as names → use _
+(header_numeric_mode        name: _ @attribute)
+(header_numeric_nabc_lines  name: _ @attribute)
+(header_numeric_staff_lines name: _ @attribute)
+(header_tex_annotation      name: _ @attribute)
+(header_tex_mode_modifier   name: _ @attribute)
+(header_tex_mode_differentia name: _ @attribute)
+
+; Header values
+; Generic header value (now a named node after grammar improvement)
+(header_value) @string
+
+; Numeric header value (named node already highlighted elsewhere)
 (header_value_numeric) @number
+
+; TeX header values (injected LaTeX code)
+(header_tex_annotation       value: (tex_code_header) @string)
+(header_tex_mode_modifier    value: (tex_code_header) @string)
+(header_tex_mode_differentia value: (tex_code_header) @string)
+(header_tex_def_macro        value: (tex_code_header) @string)
+
+; Header terminators (; and ;;)
+(header_generic              terminator: _ @punctuation.delimiter)
+(header_numeric_mode         terminator: _ @punctuation.delimiter)
+(header_numeric_nabc_lines   terminator: _ @punctuation.delimiter)
+(header_numeric_staff_lines  terminator: _ @punctuation.delimiter)
+(header_tex_annotation       terminator: _ @punctuation.delimiter)
+(header_tex_mode_modifier    terminator: _ @punctuation.delimiter)
+(header_tex_mode_differentia terminator: _ @punctuation.delimiter)
+(header_tex_def_macro        terminator: _ @punctuation.delimiter)
 
 (section_separator) @punctuation.special
 
@@ -25,9 +55,10 @@
 ; GABC NOTATION - CLEFS
 ; ============================================================================
 
-(c_clef) @keyword
-(f_clef) @keyword
-(c_clef_flat) @keyword
+(c_clef) @keyword.directive
+(f_clef) @keyword.directive
+(c_clef_flat) @keyword.directive
+(f_clef_flat) @keyword.directive
 
 ; ============================================================================
 ; GABC NOTATION - SEPARATION BARS
@@ -38,6 +69,7 @@
 (divisio_minimis) @punctuation.special
 (divisio_minimis_upper_ledger_line) @punctuation.special
 (divisio_minima) @punctuation.special
+(divisio_minima_upper_ledger_line) @punctuation.special
 (divisio_minor) @punctuation.special
 (divisio_maior) @punctuation.special
 (divisio_maior_dotted) @punctuation.special
@@ -52,17 +84,17 @@
 ; GABC NOTATION - CUSTOS
 ; ============================================================================
 
-(custos_auto_pitch) @keyword
-(custos_symbol) @keyword
-(force_custos) @keyword
-(disable_custos) @keyword
+(custos_auto_pitch) @keyword.directive
+(custos_symbol) @keyword.directive
+(force_custos) @keyword.control
+(disable_custos) @keyword.control
 
 ; ============================================================================
 ; GABC NOTATION - LINE BREAKS
 ; ============================================================================
 
-(justified_line_break) @keyword
-(ragged_line_break) @keyword
+(justified_line_break) @keyword.control
+(ragged_line_break) @keyword.control
 
 ; ============================================================================
 ; GABC NOTATION - SPACING
@@ -168,45 +200,48 @@
 ; ============================================================================
 
 ; Shape & stroke
-(shape) @keyword
-(stroke) @keyword
+(shape) @keyword.directive
+(stroke) @keyword.directive
 
 ; Custos control
-(nocustos) @keyword
+(nocustos) @keyword.control
 
 ; Choral signs
-(cs) @keyword
-(cn) @keyword
+(cs) @keyword.directive
+(cn) @keyword.directive
 
 ; Braces
-(ob) @keyword
-(ub) @keyword
-(ocb) @keyword
-(ocba) @keyword
+(ob) @keyword.directive
+(ub) @keyword.directive
+(ocb) @keyword.directive
+(ocba) @keyword.directive
 
 ; Stem length
-(ll) @keyword
+(ll) @keyword.directive
 
 ; Ledger lines
-(oll) @keyword
-(ull) @keyword
+(oll) @keyword.directive
+(ull) @keyword.directive
 
 ; Slurs
-(oslur) @keyword
-(uslur) @keyword
+(oslur) @keyword.directive
+(uslur) @keyword.directive
 
 ; Horizontal episema
-(oh) @keyword
-(uh) @keyword
+(oh) @keyword.directive
+(uh) @keyword.directive
 (episema_position) @string
 
 ; Above lines text
-(alt) @keyword
+(alt) @keyword.directive
 
 ; Verbatim
-(nv) @keyword
-(gv) @keyword
-(ev) @keyword
+(nv) @keyword.directive
+(gv) @keyword.directive
+(ev) @keyword.directive
+
+; Macros ([nm0], [gm0], [em0], [altm0])
+(gabc_macro) @function.macro
 
 ; ============================================================================
 ; SYLLABLE TEXT & STYLING
@@ -217,26 +252,60 @@
 (syllable_other_above_lines_text) @string.special
 (syllable_other_special_character) @string.escape
 
-; Style tags - highlight text within complete tags
+; Syllable control tags
+(syllable_control_clear) @keyword.control
+(syllable_control_protrusion) @keyword.control
+
+; Elision (vowel suppression for centering)
+(syllable_control_elision) @keyword.control
+(syllable_control_elision_open) @keyword.control
+(syllable_control_elision_close) @keyword.control
+
+; EUOUAE (psalm tone differentia marking)
+(syllable_control_euouae) @keyword.control
+(syllable_control_euouae_open) @keyword.control
+(syllable_control_euouae_close) @keyword.control
+
+; No Line Break Area
+(syllable_control_no_line_break_open) @keyword.control
+(syllable_control_no_line_break_close) @keyword.control
+
+; Translation text below staff: [text]
+(syllable_translation) @string.special
+(translation_content) @string.special
+
+; Lyric centering markers: {text}
+(syllable_centering) @punctuation.special
+(centering_content) @punctuation.special
+
+; Escape sequences: $x
+(syllable_escape_sequence) @string.escape
+
+; Asterisk markers (* = half-asterisk/division, ** = second asterisk)
+; These are parsed as syllable_text but have structural meaning
+((syllable_text) @keyword
+  (#match? @keyword "^\\*+$"))
+
+; Style tags - highlight text content within tags (not the tags themselves)
 (syllable_style_bold
   (syllable
-    (syllable_text) @emphasis.strong))
+    (syllable_text) @markup.bold))
 
 (syllable_style_italic
   (syllable
-    (syllable_text) @emphasis))
+    (syllable_text) @markup.italic))
 
 (syllable_style_underline
   (syllable
-    (syllable_text) @title))
+    (syllable_text) @markup.underline))
 
 (syllable_style_small_caps
   (syllable
-    (syllable_text) @title))
+    (syllable_text) @markup.heading))
 
 (syllable_style_teletype
   (syllable
-    (syllable_text) @text.literal))
+    (syllable_text) @markup.raw))
 
 (syllable_style_colored
   (syllable
@@ -246,46 +315,46 @@
 ; Bold
 (syllable
   (syllable_style_bold_open)
-  (syllable_text) @emphasis.strong)
+  (syllable_text) @markup.bold)
 
 (syllable
-  (syllable_text) @emphasis.strong
+  (syllable_text) @markup.bold
   (syllable_style_bold_close))
 
 ; Italic
 (syllable
   (syllable_style_italic_open)
-  (syllable_text) @emphasis)
+  (syllable_text) @markup.italic)
 
 (syllable
-  (syllable_text) @emphasis
+  (syllable_text) @markup.italic
   (syllable_style_italic_close))
 
 ; Underline
 (syllable
   (syllable_style_underline_open)
-  (syllable_text) @title)
+  (syllable_text) @markup.underline)
 
 (syllable
-  (syllable_text) @title
+  (syllable_text) @markup.underline
   (syllable_style_underline_close))
 
 ; Small Caps
 (syllable
   (syllable_style_small_caps_open)
-  (syllable_text) @title)
+  (syllable_text) @markup.heading)
 
 (syllable
-  (syllable_text) @title
+  (syllable_text) @markup.heading
   (syllable_style_small_caps_close))
 
 ; Teletype
 (syllable
   (syllable_style_teletype_open)
-  (syllable_text) @text.literal)
+  (syllable_text) @markup.raw)
 
 (syllable
-  (syllable_text) @text.literal
+  (syllable_text) @markup.raw
   (syllable_style_teletype_close))
 
 ; Colored
@@ -326,6 +395,8 @@
 (nihil) @constant
 (uncinus) @constant
 (oriscus_clivis) @constant
+(quilisma_3_loops) @constant
+(quilisma_2_loops) @constant
 
 ; ============================================================================
 ; NABC - MODIFIERS
@@ -409,6 +480,47 @@
 (parvum) @keyword
 (paratim) @keyword
 (perfecte) @keyword
+(parvum_mediocriter) @keyword
+(pulcre) @keyword
+(sursum) @keyword
+(sursum_bene) @keyword
+(sursum_celeriter) @keyword
+(similiter) @keyword
+(simpliciter) @keyword
+(simpliciter_simpl) @keyword
+(simul) @keyword
+(sursum_mediocriter) @keyword
+(sursum_parum) @keyword
+(sursum_tenere) @keyword
+(statim) @keyword
+(tenere) @keyword
+(tenere_bene) @keyword
+(tenere_humiliter) @keyword
+(tenere_mediocriter) @keyword
+(tenere_wide) @keyword
+(valde) @keyword
+(volubiliter) @keyword
+(expectare) @keyword
+
+; Tironian letters (Laon notation)
+(deorsum) @keyword
+(devertit) @keyword
+(devexum) @keyword
+(prode_sub_eam) @keyword
+(quam_mox) @keyword
+(sub) @keyword
+(seorsum) @keyword
+(subjice) @keyword
+(saltim) @keyword
+(sonare) @keyword
+(supra) @keyword
+(saltate) @keyword
+(ut_supra) @keyword
+
+; Structural wrappers for significant/tironian letters
+(significant_letter) @keyword
+(tironian_letter) @keyword
+(position_number) @number
 
 ; ============================================================================
 ; COMMENTS

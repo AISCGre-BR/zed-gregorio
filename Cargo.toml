@@ -15,4 +15,4 @@ incremental = false
 incremental = false
 
 [dependencies]
-zed_extension_api = "0.1.0"
+zed_extension_api = "0.7.0"
