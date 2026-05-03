@@ -1,6 +1,6 @@
 id = "gregorio"
 name = "Gregorio GABC"
-version = "0.2.0"
+version = "1.0.0-alpha.1"
 schema_version = 1
 authors = ["AISCGre Brasil"]
 description = "Support for GABC/NABC Gregorian chant notation, powered by tree-sitter-gregorio and gregorio-lsp"
