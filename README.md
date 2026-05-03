@@ -14,13 +14,13 @@ Adds support for **GABC/NABC** (Gregorian chant notation) files to [Zed](https:/
 
 For **Language Server** features (diagnostics, hover, completions):
 
-1. [Node.js](https://nodejs.org) ≥ 16
-2. Install gregorio-lsp globally:
-   ```sh
-   npm install -g gregorio-lsp
-   ```
+Install `gregorio-lsp` via Cargo:
+```sh
+cargo install --git https://github.com/aiscgre-br/gregorio-lsp \
+  --tag v1.0.0-alpha.1 --bin gregorio-lsp
+```
 
-Syntax highlighting works without any prerequisites.
+Make sure `~/.cargo/bin` is in your PATH. Syntax highlighting works without any prerequisites.
 
 ## Installation
 
@@ -35,8 +35,8 @@ Search for "Gregorio" in **Zed → Extensions**.
 
 ## Grammar
 
-This extension uses [tree-sitter-gregorio](https://github.com/AISCGre-BR/tree-sitter-gregorio) (v0.3.0+), a complete tree-sitter grammar for GABC+NABC notation compatible with Gregorio 6.1.0.
+This extension uses [tree-sitter-gregorio](https://github.com/AISCGre-BR/tree-sitter-gregorio) (v1.0.0-alpha.1), a complete tree-sitter grammar for GABC+NABC notation compatible with Gregorio 6.2.0.
 
 ## License
 
-MIT
+MIT — Copyright (c) 2026 AISCGre Brasil. See [LICENSE](LICENSE).
