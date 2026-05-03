@@ -1,14 +1,14 @@
 id = "gregorio"
 name = "Gregorio GABC"
-version = "0.1.0"
+version = "0.2.0"
 schema_version = 1
-authors = ["Laércio de Sousa <laercio@sivali.sousa.nom.br>"]
+authors = ["AISCGre Brasil"]
 description = "Support for GABC/NABC Gregorian chant notation, powered by tree-sitter-gregorio and gregorio-lsp"
 repository = "https://github.com/AISCGre-BR/zed-gregorio"
 
 [grammars.gregorio]
 repository = "https://github.com/AISCGre-BR/tree-sitter-gregorio"
-rev = "51a73e7211d0775d990e2d9a88fb66542a27883b"
+rev = "002d6b31d8860324a3a51544b245903e34cbdf80"
 
 [language_servers.gregorio-lsp]
 name = "Gregorio LSP"

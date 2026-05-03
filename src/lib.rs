@@ -16,7 +16,7 @@ impl zed::Extension for GregorioExtension {
         _language_server_id: &zed::LanguageServerId,
         worktree: &zed::Worktree,
     ) -> zed::Result<zed::Command> {
-        // Try to find gregorio-lsp in PATH (installed globally via npm)
+        // Prefer a pre-installed binary (cargo install gregorio-lsp or system package).
         if let Some(server_path) = worktree.which("gregorio-lsp") {
             self.cached_server_path = Some(server_path.clone());
             return Ok(zed::Command {
@@ -26,16 +26,7 @@ impl zed::Extension for GregorioExtension {
             });
         }
 
-        // Try to find it via node + npx
-        if let Some(npx_path) = worktree.which("npx") {
-            return Ok(zed::Command {
-                command: npx_path,
-                args: vec!["gregorio-lsp".to_string(), "--stdio".to_string()],
-                env: Default::default(),
-            });
-        }
-
-        // Try to use cached path from previous successful resolution
+        // Use cached path from a previous successful resolution.
         if let Some(ref cached) = self.cached_server_path {
             return Ok(zed::Command {
                 command: cached.clone(),
@@ -45,8 +36,12 @@ impl zed::Extension for GregorioExtension {
         }
 
         Err(
-            "gregorio-lsp not found. Install it with: npm install -g gregorio-lsp\n\
-             Make sure Node.js >= 16 is installed and in your PATH."
+            "gregorio-lsp not found. Install it with:\n\
+             \n\
+             cargo install --git https://github.com/aiscgre-br/gregorio-lsp \\\n\
+               --tag v1.0.0-alpha.1 --bin gregorio-lsp\n\
+             \n\
+             Make sure ~/.cargo/bin is in your PATH."
                 .to_string(),
         )
     }
