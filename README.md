@@ -1,4 +1,4 @@
-# Gregorio (GABC) — Zed Extension
+# Gregorio GABC — Zed Extension
 
 Adds support for **GABC/NABC** (Gregorian chant notation) files to [Zed](https://zed.dev).
 
