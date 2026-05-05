@@ -1,6 +1,6 @@
 [package]
 name = "zed-gregorio"
-version = "1.0.0-alpha.1"
+version = "0.3.0"
 edition = "2021"
 license = "MIT"
 description = "Zed extension for Gregorio GABC/NABC Gregorian chant notation"

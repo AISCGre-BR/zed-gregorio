@@ -20,8 +20,8 @@
 (header_tex_mode_differentia name: _ @attribute)
 
 ; Header values
-; Generic header value (now a named node after grammar improvement)
-(header_value) @string
+; Generic header value text is not yet a named node in the pinned grammar (v0.5.2, commit c9034de8).
+; Add `(header_value) @string` here once the grammar introduces that node.
 
 ; Numeric header value (named node already highlighted elsewhere)
 (header_value_numeric) @number
@@ -58,7 +58,7 @@
 (c_clef) @keyword.directive
 (f_clef) @keyword.directive
 (c_clef_flat) @keyword.directive
-(f_clef_flat) @keyword.directive
+; f_clef_flat is not a named node in the pinned grammar (v0.5.2, commit c9034de8) — add once the grammar introduces it.
 
 ; ============================================================================
 ; GABC NOTATION - SEPARATION BARS
@@ -240,8 +240,8 @@
 (gv) @keyword.directive
 (ev) @keyword.directive
 
-; Macros ([nm0], [gm0], [em0], [altm0])
-(gabc_macro) @function.macro
+; Macros ([nm0], [gm0], [em0], [altm0]) — gabc_macro is not a named node in the
+; pinned grammar (v0.5.2, commit c9034de8); macros are anonymous tokens. Add once the grammar names them.
 
 ; ============================================================================
 ; SYLLABLE TEXT & STYLING
@@ -272,11 +272,14 @@
 
 ; Translation text below staff: [text]
 (syllable_translation) @string.special
-(translation_content) @string.special
+; translation_content is not a named node in the pinned grammar (v0.5.2, commit c9034de8) — add once introduced.
 
 ; Lyric centering markers: {text}
 (syllable_centering) @punctuation.special
-(centering_content) @punctuation.special
+; centering_content is not a named node in the pinned grammar (v0.5.2, commit c9034de8) — add once introduced.
+
+; Lyric tie (Gregorio 6.2.0+): ~ in syllable text
+(lyric_tie) @punctuation.special
 
 ; Escape sequences: $x
 (syllable_escape_sequence) @string.escape

@@ -1,4 +1,4 @@
-# Gregorio GABC — Zed Extension
+# Gregorio (GABC) — Zed Extension
 
 Adds support for **GABC/NABC** (Gregorian chant notation) files to [Zed](https://zed.dev).
 
@@ -17,7 +17,7 @@ For **Language Server** features (diagnostics, hover, completions):
 Install `gregorio-lsp` via Cargo:
 ```sh
 cargo install --git https://github.com/aiscgre-br/gregorio-lsp \
-  --tag v1.0.0-alpha.1 --bin gregorio-lsp
+  --tag v0.3.0 --bin gregorio-lsp
 ```
 
 Make sure `~/.cargo/bin` is in your PATH. Syntax highlighting works without any prerequisites.
@@ -35,7 +35,7 @@ Search for "Gregorio" in **Zed → Extensions**.
 
 ## Grammar
 
-This extension uses [tree-sitter-gregorio](https://github.com/AISCGre-BR/tree-sitter-gregorio) (v1.0.0-alpha.1), a complete tree-sitter grammar for GABC+NABC notation compatible with Gregorio 6.2.0.
+This extension uses [tree-sitter-gregorio](https://github.com/AISCGre-BR/tree-sitter-gregorio) (v0.5.2, commit `c9034de8`), a complete tree-sitter grammar for GABC+NABC notation compatible with Gregorio 6.2.0.
 
 ## License
 
