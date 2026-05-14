@@ -3,7 +3,8 @@
     "context": "Editor && (language == GABC)",
     "bindings": {
       "ctrl-alt-up":   "editor::ToggleCodeActions",
-      "ctrl-alt-down": "editor::ToggleCodeActions"
+      "ctrl-alt-down": "editor::ToggleCodeActions",
+      "ctrl-alt-f":    "editor::ToggleCodeActions"
     }
   }
 ]
