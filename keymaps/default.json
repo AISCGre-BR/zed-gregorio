@@ -1,0 +1,9 @@
+[
+  {
+    "context": "Editor && (language == GABC)",
+    "bindings": {
+      "ctrl-alt-up":   "editor::ToggleCodeActions",
+      "ctrl-alt-down": "editor::ToggleCodeActions"
+    }
+  }
+]
