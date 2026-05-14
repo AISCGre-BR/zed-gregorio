@@ -17,7 +17,7 @@ For **Language Server** features (diagnostics, hover, completions):
 Install `gregorio-lsp` via Cargo:
 ```sh
 cargo install --git https://github.com/aiscgre-br/gregorio-lsp \
-  --tag v0.4.0 --bin gregorio-lsp
+  --tag v0.5.0 --bin gregorio-lsp
 ```
 
 Make sure `~/.cargo/bin` is in your PATH. Syntax highlighting works without any prerequisites.

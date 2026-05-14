@@ -39,7 +39,7 @@ impl zed::Extension for GregorioExtension {
             "gregorio-lsp not found. Install it with:\n\
              \n\
              cargo install --git https://github.com/aiscgre-br/gregorio-lsp \\
-                            --tag v0.4.0 --bin gregorio-lsp\n\
+                            --tag v0.5.0 --bin gregorio-lsp\n\
              \n\
              Make sure ~/.cargo/bin is in your PATH."
                 .to_string(),
