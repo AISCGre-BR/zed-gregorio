@@ -51,12 +51,26 @@ languages/
 
 ## 3. Development Workflow
 
-> **NixOS environment**: `cargo` and `rustc` are not in PATH directly.
-> Always use nix shells:
+> **NixOS environment**: a `flake.nix` is provided. Use `nix develop` (or `direnv allow`
+> if direnv is installed) to enter the dev shell, which includes `cargo`, `rustc`,
+> `gcc`, `cargo-component`, and `wasm-tools`.
 
 ```bash
-# Build the extension (Zed loads it as a cdylib)
-nix shell nixpkgs#cargo nixpkgs#rustc nixpkgs#gcc -c cargo build
+# Enter the dev shell (once)
+nix develop          # or: direnv allow
+
+# Compile-check only (native target — fast iteration)
+cargo build
+
+# Build the WebAssembly Component that Zed loads
+# IMPORTANT: use cargo-component, NOT plain `cargo build`.
+# Plain `cargo build --target wasm32-wasip1` produces a core MVP module
+# (not a Component), which Zed's extension loader cannot use.
+cargo component build --target wasm32-wasip1 --release
+cp target/wasm32-wasip1/release/zed_gregorio.wasm extension.wasm
+
+# Validate the produced component
+wasm-tools validate --features component-model extension.wasm
 
 # Install as a dev extension in Zed:
 # Zed → Extensions → Install Dev Extension → select this directory
@@ -65,9 +79,10 @@ nix shell nixpkgs#cargo nixpkgs#rustc nixpkgs#gcc -c cargo build
 **The cycle for any change:**
 
 1. Edit the relevant file(s)
-2. `cargo build` — verify the Rust crate compiles (only needed when editing `src/lib.rs`)
-3. Reload the dev extension in Zed to test
-4. Commit and push
+2. `cargo build` — verify the Rust crate compiles (fast, native build)
+3. `cargo component build --target wasm32-wasip1 --release` + copy to `extension.wasm` — produce the loadable component
+4. Reload the dev extension in Zed to test
+5. Commit and push
 
 ---
 

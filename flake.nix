@@ -28,11 +28,10 @@
           overlays = [ rust-overlay.overlays.default ];
         };
 
-        # Stable Rust toolchain with:
-        #   - wasm32-wasip1  — required to compile the extension to a .wasm binary
-        #   - rust-src       — enables rust-analyzer and cargo doc
-        #   - rustfmt        — code formatting
-        #   - clippy         — linter
+        # Stable Rust toolchain.
+        # wasm32-wasip1 is the target required by cargo-component and by Zed's
+        # extension loader — do NOT switch to wasm32-wasip2, which is still
+        # incompatible with several transitive dependencies of zed_extension_api.
         rustToolchain = pkgs.rust-bin.stable.latest.default.override {
           targets = [ "wasm32-wasip1" ];
           extensions = [
@@ -47,28 +46,42 @@
           packages = [
             rustToolchain
 
-            # C linker — required by the Rust compiler for native (host) builds.
+            # C linker — required by rustc for native (host) builds.
             pkgs.gcc
 
-            # WebAssembly tooling — used to inspect, validate, and convert between
-            # core Wasm and the Component Model format consumed by the Zed extension
-            # loader (e.g. `wasm-tools component new`, `wasm-tools validate`).
+            # cargo-component wraps `cargo build` and automatically converts the
+            # wasm32-wasip1 core module into a WebAssembly Component (the format
+            # expected by Zed's extension loader). Plain `cargo build` produces a
+            # core MVP module that Zed cannot load.
+            #
+            # Correct build command:
+            #   cargo component build --target wasm32-wasip1 --release
+            # Output: target/wasm32-wasip1/release/zed_gregorio.wasm  (component)
+            pkgs.cargo-component
+
+            # WebAssembly tooling — validate, inspect, and decompose .wasm components.
+            #   wasm-tools validate --features component-model extension.wasm
             pkgs.wasm-tools
           ];
 
-          # Improve error output during development.
           env.RUST_BACKTRACE = "1";
 
           shellHook = ''
             echo ""
             echo "  zed-gregorio dev shell"
-            echo "  ──────────────────────────────────────────────────────────────"
-            echo "  cargo build                            native compile-check"
-            echo "  cargo build --target wasm32-wasip1     build extension .wasm"
-            echo "  cargo clippy -- -D warnings            lint"
-            echo "  cargo fmt --check                      check formatting"
-            echo "  wasm-tools validate extension.wasm     validate built .wasm"
-            echo "  ──────────────────────────────────────────────────────────────"
+            echo "  ──────────────────────────────────────────────────────────────────"
+            echo "  Compile-check (native):"
+            echo "    cargo build"
+            echo "    cargo clippy -- -D warnings"
+            echo "    cargo fmt --check"
+            echo ""
+            echo "  Build Zed extension .wasm (WebAssembly Component):"
+            echo "    cargo component build --target wasm32-wasip1 --release"
+            echo "    cp target/wasm32-wasip1/release/zed_gregorio.wasm extension.wasm"
+            echo ""
+            echo "  Validate produced component:"
+            echo "    wasm-tools validate --features component-model extension.wasm"
+            echo "  ──────────────────────────────────────────────────────────────────"
             echo ""
           '';
         };
